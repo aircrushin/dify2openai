@@ -2,9 +2,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import cors from "cors"; // 引入 cors 中间件
+
 dotenv.config();
 
 if (!process.env.DIFY_API_URL) throw new Error("DIFY API URL is required.");
+
 function generateId() {
   let result = "";
   const characters =
@@ -14,8 +17,10 @@ function generateId() {
   }
   return result;
 }
+
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // 使用 cors 中间件
 
 app.post("/v1/chat/completions", async (req, res) => {
   const authHeader =
@@ -54,7 +59,6 @@ app.post("/v1/chat/completions", async (req, res) => {
         conversation_id: "",
         user: "apiuser",
         auto_generate_name: false
-
       }),
     });
     console.log("Received response from DIFY API with status:", resp.status);
