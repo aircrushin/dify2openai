@@ -56,29 +56,3 @@ const response = await fetch('http://localhost:3000/v1/chat/completions', {
 const data = await response.json();
 console.log(data);
 ```
-
-## Roadmap
-**Coming Soon**
-*   Workflow Bot
-*   Variables support
-*   Image support
-*   Audio-to-text
-*   Text-to-audio
-*   Docker support
-
-**Available Now**
-*   Continuous dialogue
-*   Zeabur & Vercel deployment
-*   Streaming & Blocking
-*   Agent & Chat bots
-
-## Contact
-Feel free to reach out for any questions or feedback
-
-[X](https://sum4all.site/twitter)\
-[telegram](https://sum4all.site/telegram)
-
-<a href="https://www.buymeacoffee.com/fatwang2" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
-## License
-This project is licensed under the MIT License.
