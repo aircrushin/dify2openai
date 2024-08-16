@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
-import cors from "cors"; // 引入 cors 中间件
+import cors from "cors"; // add cors-origin 
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ function generateId() {
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors()); // 使用 cors 中间件
+app.use(cors()); 
 
 app.post("/v1/chat/completions", async (req, res) => {
   const authHeader =
@@ -63,7 +63,10 @@ app.post("/v1/chat/completions", async (req, res) => {
     });
     console.log("Received response from DIFY API with status:", resp.status);
     if (stream) {
+      // fix the bug of streaming
       res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
       const stream = resp.body;
       let buffer = "";
       let isFirstChunk = true;
@@ -280,4 +283,7 @@ app.post("/v1/chat/completions", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3000);
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Safebition AI Server is running on port ${port}...`);
+});
