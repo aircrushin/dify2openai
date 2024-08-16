@@ -9,6 +9,7 @@ This project converts the Dify API to the OpenAI API format, giving you access t
 - Support streaming and blocking
 - Support Agent bots API on dify
 - Support Chat bots API on dify
+- Support Cors
 
 ## Deployment
 ### Zeabur
